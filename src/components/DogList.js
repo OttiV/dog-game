@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-
 export default class DogsList extends Component {
   renderDogBreed(breed) {
     return (
@@ -19,6 +18,10 @@ export default class DogsList extends Component {
     return (
       <div className="dogs-list">
         <h1>Dogs List</h1>
+        <Link to="/">
+          {" "}
+          <button>Go back</button>
+        </Link>
 
         {!dogBreeds && "Loading..."}
 

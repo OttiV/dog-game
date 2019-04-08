@@ -15,7 +15,7 @@ export default class Home extends Component {
         </header>
         <main className="Home-main">
           {/* <Route exact path="/" component={App} /> */}
-          <DogListContainer />
+          {/* <DogListContainer /> */}
         </main>
         <footer>
           <button onClick="#">GAME 1</button>
