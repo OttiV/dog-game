@@ -1,5 +1,5 @@
 import request from "superagent";
-import { appIsLoading, appIsDoneLoading } from "./appStatus";
+import { appIsLoading, appIsDoneLoading } from "./appStatusA";
 
 
 export const SET_DOG_LIST = "SET_DOG_LIST";
