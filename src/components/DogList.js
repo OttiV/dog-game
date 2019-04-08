@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+
 export default class DogsList extends Component {
   renderDogBreed(breed) {
     return (
@@ -13,7 +15,7 @@ export default class DogsList extends Component {
 
   render() {
     const { dogBreeds } = this.props;
-    console.log(this.props);
+
     return (
       <div className="dogs-list">
         <h1>Dogs List</h1>
