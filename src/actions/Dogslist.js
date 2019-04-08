@@ -1,6 +1,5 @@
 import request from "superagent";
-import { appIsLoading, appIsDoneLoading } from "./appStatusA";
-
+import { appIsLoading, appIsDoneLoading } from "./appStatus";
 
 export const SET_DOG_LIST = "SET_DOG_LIST";
 
@@ -21,10 +20,7 @@ export const getDogList = () => {
         dispatch(appIsDoneLoading());
       })
       .catch(error => {
-        alert(error);
-        alert(
-          'parhaps you did not start the api with "npm run api"? (run that in a seperate terminal)'
-        );
+        console.error(error);
         const EMPTY_ARRAY = [];
         dispatch(setDogList(EMPTY_ARRAY));
         dispatch(appIsDoneLoading());

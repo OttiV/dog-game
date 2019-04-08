@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import DogListContainer from "../DogListContainer";
-import { Route, Link } from "react-router-dom";
+// import DogListContainer from "../DogListContainer";
+import {  Link } from "react-router-dom";
 
 export default class Home extends Component {
   state = {};
@@ -11,7 +11,7 @@ export default class Home extends Component {
           <Link to="/dog-breeds/">
             <button onClick="#">STUDY</button>
           </Link>
-          <h1>Dog Game</h1>
+          <h1>DOG GAME</h1>
         </header>
         <main className="Home-main">
           {/* <Route exact path="/" component={App} /> */}

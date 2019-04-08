@@ -1,10 +1,10 @@
-import { SET_DOG_LIST } from "../actions/DogslistA";
+import { SET_DOG_LIST } from "../actions/Dogslist";
 
 export default (state = null, action = {}) => {
   switch (action.type) {
     case SET_DOG_LIST:
-      return action.payload.map(breed => {
-        return { ...breed };
+      return Object.keys(action.payload.message).map(breed => {
+        return breed;
       });
     default:
       return state;
