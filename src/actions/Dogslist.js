@@ -1,5 +1,5 @@
 import request from "superagent";
-import { appIsLoading, appIsDoneLoading } from "./appStatus";
+import { appLoading, appLoaded } from "./appStatus";
 
 export const SET_DOG_LIST = "SET_DOG_LIST";
 
@@ -12,18 +12,18 @@ export const setDogList = breeds => {
 
 export const getDogList = () => {
   return dispatch => {
-    dispatch(appIsLoading());
+    dispatch(appLoading());
     request
       .get("https://dog.ceo/api/breeds/list/all")
       .then(response => {
-        dispatch(setDogList(response.body));
-        dispatch(appIsDoneLoading());
+        dispatch(setDogList(response.body.message));
+        dispatch(appLoaded());
       })
       .catch(error => {
         console.error(error);
         const EMPTY_ARRAY = [];
         dispatch(setDogList(EMPTY_ARRAY));
-        dispatch(appIsDoneLoading());
+        dispatch(appLoaded());
       });
   };
 };
