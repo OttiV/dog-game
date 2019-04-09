@@ -22,7 +22,12 @@ class DogsImages extends Component {
             this.props.match.params.breeds.slice(1)}
         </li>
         <br />
-        <Link to="/">Go back to the index</Link>
+        <Link to="/dog-breeds/">
+          <button>STUDY</button>
+        </Link>
+        <Link to="/">
+          <button>HOME</button>
+        </Link>
         <div>
           {this.props.images &&
             this.props.images.map(url => (
