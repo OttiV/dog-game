@@ -1,27 +1,32 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-export default class DogsList extends Component {
-  renderDogBreed(breed) {
-    return (
-      <li key={breed}>
-        <Link to={`/dog-breeds/${breed}`}>
-          {breed.charAt(0).toUpperCase() + breed.slice(1)}
-        </Link>
-      </li>
-    );
-  }
+// import React, { Component } from "react";
+// import { Link } from "react-router-dom";
 
-  render() {
-    const { dogBreeds } = this.props;
-    console.log(this.props);
-    return (
-      <div className="dogs-list">
-        <h1>Dogs List</h1>
+// export default class DogsList extends Component {
+//   renderDogBreed(breed) {
+//     return (
+//       <li key={breed}>
+//         <Link to={`/dog-breeds/${breed}`}>
+//           {breed.charAt(0).toUpperCase() + breed.slice(1)}
+//         </Link>
+//       </li>
+//     );
+//   }
 
-        {!dogBreeds && "Loading..."}
+//   render() {
+//     const { dogBreeds } = this.props;
 
-        {dogBreeds && <ul>{dogBreeds.map(this.renderDogBreed)}</ul>}
-      </div>
-    );
-  }
-}
+//     return (
+    //   <div className="dogs-list">
+    //     <h1>Dogs List</h1>
+    //     <Link to="/">
+    //       {" "}
+    //       <button>Go back</button>
+    //     </Link>
+
+//         {!dogBreeds && "Loading..."}
+
+//         {dogBreeds && <ul>{dogBreeds.map(this.renderDogBreed)}</ul>}
+//       </div>
+//     );
+//   }
+// }
