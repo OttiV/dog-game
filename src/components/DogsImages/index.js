@@ -18,11 +18,9 @@ class DogsImages extends Component {
       <div className="dog-breed-images">
         <h1>Dogs Breed Images</h1>
         <li key={this.props.match.params.breeds}>
-          {/* <Link to={`/dog-breeds/${this.props.match.params.breeds}`}> */}
-          {this.props.match.params.breeds}
-          {/* </Link> */}
+          {this.props.match.params.breeds.charAt(0).toUpperCase() +
+            this.props.match.params.breeds.slice(1)}
         </li>
-        {/* <h2 /> */}
         <br />
         <Link to="/">Go back to the index</Link>
         <div>
