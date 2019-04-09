@@ -20,7 +20,7 @@ class DogsList extends Component {
         <h1>DOG LIST</h1>
         <Link to="/">
           {" "}
-          <button>Go back</button>
+          <button>GO BACK BUTTON</button>
         </Link>
 
         <ul>

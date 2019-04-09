@@ -6,10 +6,10 @@ export default function DogBreedImages(props) {
   const images = props.images;
   return (
     <div className="dog-breed-images">
-      <h1>Dogs Breed Images</h1>
+      <h1>Dog Breed Images</h1>
       This page will show images of the {props.match.params.breed} breed.
       <div>
-        {images && images.map(url => <img src={url} alt="Dog" />)}
+        {images && images.map(url => <img src={url} alt="DOG IMAGE" />)}
         {!images && "Loading..."}
       </div>
 
