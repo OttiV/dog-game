@@ -1,4 +1,4 @@
-import { APP_LOADING, APP_DONE_LOADING } from "../actions/appStatus";
+import { APP_LOADING, APP_LOADED } from "../actions/appStatus";
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
@@ -7,7 +7,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         loading: true
       };
-    case APP_DONE_LOADING:
+    case APP_LOADED:
       return {
         ...state,
         loading: false

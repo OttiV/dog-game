@@ -19,13 +19,12 @@ class DogsList extends Component {
       <div className="dogs-list">
         <h1>DOG LIST</h1>
         <Link to="/">
-          {" "}
           <button>Go back</button>
         </Link>
 
         <ul>
-          {this.props.breeds !== null &&
-            this.props.breeds.map(breed => {
+          {this.props.dogs !== null &&
+            this.props.dogs.map(breed => {
               return <Dog key={breed.toString()} breed={breed} />;
             })}
         </ul>
@@ -36,7 +35,7 @@ class DogsList extends Component {
 
 const mapStateToProps = state => {
   return {
-    breeds: state.breeds,
+    dogs: state.dogs,
     loading: state.appStatus.loading
   };
 };

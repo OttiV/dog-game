@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import appStatus from "./appStatus";
-import breeds from "./dogs.js";
+import dogs from "./dogs.js";
 
 export default combineReducers({
   appStatus,
-  breeds
+  dogs
 });
