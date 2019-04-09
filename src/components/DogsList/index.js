@@ -23,8 +23,8 @@ class DogsList extends Component {
         </Link>
 
         <ul>
-          {this.props.dogs !== null &&
-            this.props.dogs.map(breed => {
+          {this.props.dogNames !== null &&
+            this.props.dogNames.map(breed => {
               return <Dog key={breed.toString()} breed={breed} />;
             })}
         </ul>
@@ -35,7 +35,7 @@ class DogsList extends Component {
 
 const mapStateToProps = state => {
   return {
-    dogs: state.dogs,
+    dogNames: state.dogs.dogsList,
     loading: state.appStatus.loading
   };
 };
