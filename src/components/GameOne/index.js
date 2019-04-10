@@ -23,7 +23,7 @@ class GameOne extends Component {
           <button>HOME</button>
         </Link>
         <div>
-          <img src={this.props.image} alt={this.props.answer} />
+          <img src={this.props.answerImage} alt={this.props.answer} />
         </div>
         <div>
           {this.props.answers &&
@@ -40,7 +40,8 @@ const mapStateToProps = state => {
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,
-    loading: state.appStatus.loading
+    loading: state.appStatus.loading,
+    answerImage: state.dogs.answerImage
     // map state here, use in component
   };
 };
