@@ -44,6 +44,15 @@ const mapStateToProps = state => {
     randomBreeds.push(breeds);
   }
 
+  const maximumAnswer = randomBreeds.length;
+  function getRandomAnswer() {
+    return Math.floor(Math.random() * maximumAnswer);
+  }
+  const dogAnswer = getRandomAnswer();
+  // const dogAnswer = Math.floor(Math.random() * maximumAnswer);
+
+  console.log(dogAnswer);
+
   return {
     dogs: randomBreeds,
     loading: state.appStatus.loading
