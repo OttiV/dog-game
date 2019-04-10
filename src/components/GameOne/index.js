@@ -3,14 +3,26 @@ import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 // import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
+import { setAnswers } from "../../actions/GameOne";
 import { getDogList } from "../../actions/Dogslist";
 
 class GameOne extends Component {
   componentDidMount() {
-    this.props.getDogList();
+    // we already have dogs
+    if (this.props.breeds.length !== 0) {
+      this.props.setAnswers();
+    }
+
+    if (this.props.breeds.length === 0) {
+      this.props.getDogListAndAnswers();
+    }
+
+    // we dont have dogs
+    // fetch dogs first, and then setAnswers
   }
 
   render() {
+    console.log(this.props);
     if (this.props.loading) {
       return <LoadingModal />;
     }
@@ -22,47 +34,28 @@ class GameOne extends Component {
           <button>HOME</button>
         </Link>
         <div>
-          <img src={this.props.answerImage} alt={this.props.answer} />
+          <img src={this.props.image} alt={this.props.answer} />
         </div>
         <div>
-          {this.props.dogs &&
-            this.props.dogs.map(dog => {
-              return <button key={this.props.dogs.breeds}>{dog}</button>;
+          {this.props.answers &&
+            this.props.answers.map(dog => {
+              return <button key={this.props.breeds.breeds}>{dog}</button>;
             })}
-          {!this.props.dogs && "Loading..."}
+          {this.props.breeds.length === 0 && "Loading..."}
         </div>
       </div>
     );
   }
 }
 const mapStateToProps = state => {
-  const maximum = state.dogs.breeds.length - 1;
-  function getRandom() {
-    return Math.floor(Math.random() * maximum);
-  }
-  const randomBreeds = [];
-  for (let i = 0; i < 3; i++) {
-    const number = getRandom();
-    const breeds = state.dogs.breeds[number];
-    randomBreeds.push(breeds);
-  }
-
-  // const maximumAnswer = randomBreeds.length;
-  const answerNumber = Math.floor(Math.random() * randomBreeds.length);
-  const answer = randomBreeds[answerNumber];
-  console.log("THE OPTIONS:", randomBreeds);
-  console.log("OUR WINNER:", answer);
-
-  const answerImage = `https://dog.ceo/api/breed/${answer}/images`;
-
-  console.log("OUR IMG WINNER:", answerImage);
   return {
-    dogs: randomBreeds,
+    breeds: state.dogs.breeds,
+    answers: state.dogs.answers,
     loading: state.appStatus.loading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDogList }
+  { setAnswers, getDogList }
 )(GameOne);
