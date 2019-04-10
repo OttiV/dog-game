@@ -1,5 +1,5 @@
 import request from "superagent";
-import { getDogList, setDogList } from "./Dogslist";
+import { setDogList } from "./Dogslist";
 
 export const SET_ANSWER_DATA = "SET_ANSWER_DATA";
 export const SET_ANSWER_IMAGE = "SET_ANSWER_IMAGE";

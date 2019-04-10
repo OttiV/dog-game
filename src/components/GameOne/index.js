@@ -22,6 +22,9 @@ class GameOne extends Component {
         <Link to="/">
           <button>HOME</button>
         </Link>
+        <Link to="/dog-breeds/">
+          <button>STUDY</button>
+        </Link>
         <div>
           <img src={this.props.answerImage} alt={this.props.answer} />
         </div>
