@@ -19,7 +19,7 @@ class DogsList extends Component {
       <div className="dogs-list">
         <h1>DOG LIST</h1>
         <Link to="/">
-          <button>Go back</button>
+          <button>HOME</button>
         </Link>
 
         <ul>

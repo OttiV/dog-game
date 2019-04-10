@@ -18,9 +18,15 @@ export default class Home extends Component {
           {/* <DogListContainer /> */}
         </main>
         <footer>
-          <button>GAME 1</button>
-          <button>GAME 2</button>
-          <button>GAME 3</button>
+          <Link to="/game-one/">
+            <button>GAME 1</button>
+          </Link>
+          <Link to="/game-two/">
+            <button>GAME 2</button>
+          </Link>
+          <Link to="/game-three/">
+            <button>GAME 3</button>
+          </Link>
         </footer>
       </div>
     );
