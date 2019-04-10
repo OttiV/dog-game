@@ -22,22 +22,28 @@ class GameOne extends Component {
           <button>HOME</button>
         </Link>
         <div>
-          <button>{this.props.dogs}</button>
+          {this.props.dogs &&
+            this.props.dogs.map(dog => (
+              <button className="dogAnswers" key= {dog}>
+                {this.props.dogs}
+              </button>
+            ))}
+          {!this.props.dogs && "Loading..."}
         </div>
       </div>
     );
   }
 }
 const mapStateToProps = state => {
-  const maximum = state.dogs.breeds.length - 1
-  function getRandom () {
-    return Math.floor(Math.random () * maximum)
+  const maximum = state.dogs.breeds.length - 1;
+  function getRandom() {
+    return Math.floor(Math.random() * maximum);
   }
-  const randomBreeds = []
+  const randomBreeds = [];
   for (let i = 0; i < 3; i++) {
-    const number = getRandom()
-    const breeds = state.dogs.breeds[number]
-    randomBreeds.push(breeds)
+    const number = getRandom();
+    const breeds = state.dogs.breeds[number];
+    randomBreeds.push(breeds);
   }
 
   return {
