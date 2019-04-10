@@ -35,7 +35,7 @@ class DogsList extends Component {
 
 const mapStateToProps = state => {
   return {
-    dogNames: state.dogs.dogsList,
+    dogNames: state.dogs.breeds,
     loading: state.appStatus.loading
   };
 };

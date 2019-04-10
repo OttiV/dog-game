@@ -7,14 +7,12 @@ export default (state = initialState, action = {}) => {
     case SET_DOG_LIST:
       return {
         ...state,
-        dogsList: Object.keys(action.payload).map(breed => {
-          return breed;
-        })
+        breeds: Object.keys(action.payload)
       };
     case SET_DOG_IMAGES:
       return {
         ...state,
-        selectedDogImages: [...action.payload]
+        images: action.payload
       };
     default:
       return state;
@@ -22,6 +20,6 @@ export default (state = initialState, action = {}) => {
 };
 
 const initialState = {
-  dogsList: null,
-  selectedDogImages: null
+  breeds: [],
+  images: []
 };
