@@ -1,4 +1,5 @@
 import request from "superagent";
+import { getDogList, setDogList } from "./Dogslist";
 
 export const SET_ANSWER_DATA = "SET_ANSWER_DATA";
 export const SET_ANSWER_IMAGE = "SET_ANSWER_IMAGE";
@@ -49,5 +50,26 @@ export const setAnswers = () => {
       .catch(error => {
         console.error(error);
       });
+  };
+};
+
+export const getDogListAndAnswers = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.dogs.breeds.length === 0) {
+      request
+        .get("https://dog.ceo/api/breeds/list/all")
+        .then(response => {
+          dispatch(setDogList(response.body.message));
+          setAnswers()(dispatch, getState); // looks weird, but works
+        })
+        .catch(error => {
+          console.error(error);
+          const EMPTY_ARRAY = [];
+          dispatch(setDogList(EMPTY_ARRAY));
+        });
+    } else {
+      setAnswers()(dispatch, getState);
+    }
   };
 };

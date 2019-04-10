@@ -3,22 +3,11 @@ import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 // import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
-import { setAnswers } from "../../actions/GameOne";
-import { getDogList } from "../../actions/Dogslist";
+import { getDogListAndAnswers } from "../../actions/GameOne";
 
 class GameOne extends Component {
   componentDidMount() {
-    // we already have dogs
-    if (this.props.breeds.length !== 0) {
-      this.props.setAnswers();
-    }
-
-    if (this.props.breeds.length === 0) {
-      this.props.getDogListAndAnswers();
-    }
-
-    // we dont have dogs
-    // fetch dogs first, and then setAnswers
+    this.props.getDogListAndAnswers();
   }
 
   render() {
@@ -52,10 +41,11 @@ const mapStateToProps = state => {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,
     loading: state.appStatus.loading
+    // map state here, use in component
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setAnswers, getDogList }
+  { getDogListAndAnswers }
 )(GameOne);
