@@ -23,11 +23,9 @@ class GameOne extends Component {
         </Link>
         <div>
           {this.props.dogs &&
-            this.props.dogs.map(dog => (
-              <button className="dogAnswers" key= {dog}>
-                {this.props.dogs}
-              </button>
-            ))}
+            this.props.dogs.map(dog => {
+              return <button key={dog}>{dog}</button>;
+            })}
           {!this.props.dogs && "Loading..."}
         </div>
       </div>
