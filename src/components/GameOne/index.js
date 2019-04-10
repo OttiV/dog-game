@@ -22,9 +22,12 @@ class GameOne extends Component {
           <button>HOME</button>
         </Link>
         <div>
+          <img src={this.props.answerImage} alt={this.props.answer} />
+        </div>
+        <div>
           {this.props.dogs &&
             this.props.dogs.map(dog => {
-              return <button key={dog}>{dog}</button>;
+              return <button key={this.props.dogs.breeds}>{dog}</button>;
             })}
           {!this.props.dogs && "Loading..."}
         </div>
@@ -50,7 +53,7 @@ const mapStateToProps = state => {
   console.log("THE OPTIONS:", randomBreeds);
   console.log("OUR WINNER:", answer);
 
-  const answerImage = `https://dog.ceo/api/breed/${answer}/images/random`;
+  const answerImage = `https://dog.ceo/api/breed/${answer}/images`;
 
   console.log("OUR IMG WINNER:", answerImage);
   return {
