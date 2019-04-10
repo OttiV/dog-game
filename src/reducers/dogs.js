@@ -1,5 +1,7 @@
 import { SET_DOG_LIST } from "../actions/Dogslist";
 import { SET_DOG_IMAGES } from "../actions/DogsImages";
+import { SET_ANSWER_DATA } from "../actions/GameOne";
+import { SET_ANSWER_IMAGE } from "../actions/GameOne";
 
 export default (state = initialState, action = {}) => {
   // console.log("STATE:", state, "ACTION:", action);
@@ -7,21 +9,36 @@ export default (state = initialState, action = {}) => {
     case SET_DOG_LIST:
       return {
         ...state,
-        dogsList: Object.keys(action.payload).map(breed => {
-          return breed;
-        })
+        breeds: Object.keys(action.payload)
       };
     case SET_DOG_IMAGES:
       return {
         ...state,
-        selectedDogImages: [...action.payload]
+        images: action.payload
       };
+    case SET_ANSWER_DATA:
+      return {
+        ...state,
+        answers: action.payload.answers,
+        answer: action.payload.answer,
+        answerNumber: action.payload.answerNumber
+      };
+    case SET_ANSWER_IMAGE:
+      return {
+        ...state,
+        answerImage: action.payload
+      };
+
     default:
       return state;
   }
 };
 
 const initialState = {
-  dogsList: null,
-  selectedDogImages: null
+  breeds: [],
+  images: [],
+  answers: [],
+  answer: null,
+  answerNumber: null,
+  answerImage: null
 };
