@@ -22,9 +22,12 @@ class GameOne extends Component {
           <button>HOME</button>
         </Link>
         <div>
+          <img src={this.props.answerImage} alt={this.props.answer} />
+        </div>
+        <div>
           {this.props.dogs &&
             this.props.dogs.map(dog => {
-              return <button key={dog}>{dog}</button>;
+              return <button key={this.props.dogs.breeds}>{dog}</button>;
             })}
           {!this.props.dogs && "Loading..."}
         </div>
@@ -44,15 +47,15 @@ const mapStateToProps = state => {
     randomBreeds.push(breeds);
   }
 
-  const maximumAnswer = randomBreeds.length;
-  function getRandomAnswer() {
-    return Math.floor(Math.random() * maximumAnswer);
-  }
-  const dogAnswer = getRandomAnswer();
-  // const dogAnswer = Math.floor(Math.random() * maximumAnswer);
+  // const maximumAnswer = randomBreeds.length;
+  const answerNumber = Math.floor(Math.random() * randomBreeds.length);
+  const answer = randomBreeds[answerNumber];
+  console.log("THE OPTIONS:", randomBreeds);
+  console.log("OUR WINNER:", answer);
 
-  console.log(dogAnswer);
+  const answerImage = `https://dog.ceo/api/breed/${answer}/images`;
 
+  console.log("OUR IMG WINNER:", answerImage);
   return {
     dogs: randomBreeds,
     loading: state.appStatus.loading
