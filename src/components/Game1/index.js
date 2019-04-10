@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
+import { getGameOne } from "../../actions/GameOne";
+import { connect } from "react-redux";
+
 class GameOne extends Component {
-  //   componentDidMount() {
-  //     this.props.getGameOne();
-  //   }
+  componentDidMount() {
+    this.props.getGameOne();
+  }
 
   render() {
     if (this.props.loading) {
@@ -17,15 +20,26 @@ class GameOne extends Component {
         <Link to="/">
           <button>HOME</button>
         </Link>
-
-        {/* <ul>
-              {this.props.dogNames !== null &&
-                this.props.dogNames.map(breed => {
-                  return <Dog key={breed.toString()} breed={breed} />;
-                })}
-            </ul> */}
+        <div>
+          {this.props.images &&
+            this.props.images.map(url => (
+              <img className="dogImages" key={url} src={url} alt="Dog" />
+            ))}
+          {!this.props.images && "Loading..."}
+        </div>
       </div>
     );
   }
 }
-export default GameOne;
+const mapStateToProps = state => {
+  // console.log(state.dogs);
+  return {
+    images: state.dogs.selectedDogImages,
+    loading: state.appStatus.loading
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getGameOne }
+)(GameOne);
