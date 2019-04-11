@@ -8,9 +8,9 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
-import "./GameOne.css";
+import "../GameOne/GameOne.css";
 
-class GameOne extends Component {
+class GameTwo extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
@@ -37,7 +37,7 @@ class GameOne extends Component {
 
     return (
       <div className="game-one">
-        <h1>GAME ONE</h1>
+        <h1>GAME TWO</h1>
         <Link to="/">
           <button className="GameOneButtons">HOME</button>
         </Link>
@@ -93,4 +93,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
-)(GameOne);
+)(GameTwo);
