@@ -34,8 +34,6 @@ class GameOne extends Component {
         this.props.deleteAnswerName();
       }, 2000);
     }
-
-    // alert('Wrong!')
   };
 
   render() {
