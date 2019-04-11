@@ -9,16 +9,25 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
+import { increment, decrement } from "../../actions/counter";
 import "./GameOne.css";
 
 class GameOne extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
+  incrementCounter = () => {
+    this.props.increment();
+  };
+  // dencrementCounter = () => {
+  //   this.props.decrement();
+  // };
   handleClick = dog => {
     if (this.props.answer === dog) {
-      return this.props.setAnswers();
+      this.incrementCounter();
+      this.props.setAnswers();
     } else {
+      this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
@@ -45,6 +54,9 @@ class GameOne extends Component {
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
         </Link>
+        <div>
+          <h1>SCOREBOARD: {this.props.counter} </h1>
+        </div>
         <div>
           <img
             className="AnswerImage"
@@ -90,11 +102,19 @@ const mapStateToProps = state => {
     answer: state.dogs.answer,
     loading: state.appStatus.loading,
     answerImage: state.dogs.answerImage,
-    answerName: state.dogs.answerName
+    answerName: state.dogs.answerName,
+    counter: state.counter
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
+  {
+    getDogListAndAnswers,
+    setAnswers,
+    addAnswerName,
+    deleteAnswerName,
+    increment,
+    decrement
+  }
 )(GameOne);
