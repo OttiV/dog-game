@@ -16,7 +16,6 @@ class GameOne extends Component {
     this.props.getDogListAndAnswers();
   }
   handleClick = dog => {
-    // console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
     if (this.props.answer === dog) {
       return this.props.setAnswers();
     } else {
@@ -32,6 +31,7 @@ class GameOne extends Component {
 
   render() {
     console.log(this.props);
+    const rightAnswer = this.props.answerName;
     if (this.props.loading) {
       return <LoadingModal />;
     }
@@ -53,6 +53,10 @@ class GameOne extends Component {
           />
         </div>
         <div>
+          <h2>Directions:</h2>
+          <p>Select the correct dog breed</p>
+        </div>
+        <div>
           {this.props.answers &&
             this.props.answers.map(dog => {
               return (
@@ -66,10 +70,9 @@ class GameOne extends Component {
               );
             })}
           {this.props.breeds.length === 0 && "Loading..."}
-
           {this.props.addAnswerName && (
             <div className="answer_name">
-              <h2>{this.props.answerName}</h2>
+              <h2>{rightAnswer}</h2>
             </div>
           )}
         </div>
