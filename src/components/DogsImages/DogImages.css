@@ -1,0 +1,13 @@
+.dogImages {
+  max-width: 200px;
+  width: 200px;
+  max-height: 200px;
+  margin: 30px;
+  padding: 10px;
+  border: solid black;
+  border-radius: 10%;
+}
+
+.DogImagesButtons {
+  margin: 10px;
+}

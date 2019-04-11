@@ -3,6 +3,8 @@ import { setDogList } from "./Dogslist";
 
 export const SET_ANSWER_DATA = "SET_ANSWER_DATA";
 export const SET_ANSWER_IMAGE = "SET_ANSWER_IMAGE";
+export const ADD_ANSWER_NAME = "ADD_ANSWER_NAME";
+export const DELETE_ANSWER_NAME = "DELETE_ANSWER_NAME";
 
 export const setAnswerData = answerData => {
   return {
@@ -15,6 +17,21 @@ export const setAnswerImage = answerImage => {
   return {
     type: "SET_ANSWER_IMAGE",
     payload: answerImage
+  };
+};
+
+export const addAnswerName = answerName => {
+  console.log("answerName test:", answerName);
+  return {
+    type: ADD_ANSWER_NAME,
+    payload: answerName
+  };
+};
+
+export const deleteAnswerName = answerName => {
+  return {
+    type: DELETE_ANSWER_NAME,
+    payload: answerName
   };
 };
 

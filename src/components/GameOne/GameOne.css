@@ -1,0 +1,11 @@
+.AnswerImage {
+  max-width: 400px;
+  max-height: 400px;
+  margin: 30px;
+  padding: 10px;
+  border: solid black;
+  border-radius: 10%;
+}
+.GameOneButtons {
+  margin: 10px;
+}
