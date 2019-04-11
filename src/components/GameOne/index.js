@@ -10,11 +10,12 @@ class GameOne extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
-  handleClick = event => {
-    this.props.dispatch({
-      type: "ADD_ANSWER",
-      payload: [] //what should we state??
-    });
+  handleClick = dog => {
+    console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
+    // this.props.dispatch({
+    // type: "ADD_ANSWER",
+    // payload: [] //what should we state??
+    // });
   };
 
   render() {
@@ -45,7 +46,7 @@ class GameOne extends Component {
               return (
                 <button
                   className="GameOneButtons"
-                  onClick={this.handleClick}
+                  onClick={() => this.handleClick(dog)}
                   key={this.props.breeds.breeds}
                 >
                   {dog.charAt(0).toUpperCase() + dog.slice(1)}
@@ -62,6 +63,7 @@ const mapStateToProps = state => {
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,
+    answer: state.dogs.answer,
     loading: state.appStatus.loading,
     answerImage: state.dogs.answerImage
   };
