@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 //import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
-import { getDogListAndAnswers, setAnswers } from "../../actions/GameOne";
+import { getDogListAndAnswers, setAnswers, addAnswerName } from "../../actions/GameOne";
 import "./GameOne.css";
 
 class GameOne extends Component {
@@ -11,11 +11,12 @@ class GameOne extends Component {
     this.props.getDogListAndAnswers();
   }
   handleClick = dog => {
-    console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
+    // console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
     
     this.props.answer === dog
       ? this.props.setAnswers()
-      : alert('Wrong!')
+      : this.props.addAnswerName(this.props.answer)
+      // alert('Wrong!')
   };
 
   render() {
@@ -54,6 +55,13 @@ class GameOne extends Component {
               );
             })}
           {this.props.breeds.length === 0 && "Loading..."}
+
+          {this.props.addAnswerName && (
+            <div className="answer_name">
+            <h2>{this.props.answerName}</h2>
+        </div>
+          )}
+          
         </div>
       </div>
     );
@@ -65,11 +73,12 @@ const mapStateToProps = state => {
     answers: state.dogs.answers,
     answer: state.dogs.answer,
     loading: state.appStatus.loading,
-    answerImage: state.dogs.answerImage
+    answerImage: state.dogs.answerImage,
+    answerName: state.dogs.answerName
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers, setAnswers }
+  { getDogListAndAnswers, setAnswers, addAnswerName }
 )(GameOne);
