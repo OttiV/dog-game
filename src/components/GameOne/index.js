@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 //import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
-import { getDogListAndAnswers, setAnswers, addAnswerName } from "../../actions/GameOne";
+import {
+  getDogListAndAnswers,
+  setAnswers,
+  addAnswerName,
+  deleteAnswerName
+} from "../../actions/GameOne";
 import "./GameOne.css";
 
 class GameOne extends Component {
@@ -12,11 +17,17 @@ class GameOne extends Component {
   }
   handleClick = dog => {
     // console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
-    
-    this.props.answer === dog
-      ? this.props.setAnswers()
-      : this.props.addAnswerName(this.props.answer)
-      // alert('Wrong!')
+    if (this.props.answer === dog) {
+      return this.props.setAnswers();
+    } else {
+      this.props.addAnswerName(this.props.answer);
+      setTimeout(() => {
+        this.props.setAnswers();
+        this.props.deleteAnswerName();
+      }, 2000);
+    }
+
+    // alert('Wrong!')
   };
 
   render() {
@@ -58,10 +69,9 @@ class GameOne extends Component {
 
           {this.props.addAnswerName && (
             <div className="answer_name">
-            <h2>{this.props.answerName}</h2>
-        </div>
+              <h2>{this.props.answerName}</h2>
+            </div>
           )}
-          
         </div>
       </div>
     );
@@ -80,5 +90,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers, setAnswers, addAnswerName }
+  { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
 )(GameOne);

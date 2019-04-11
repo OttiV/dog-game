@@ -3,6 +3,7 @@ import { SET_DOG_IMAGES } from "../actions/DogsImages";
 import { SET_ANSWER_DATA } from "../actions/GameOne";
 import { SET_ANSWER_IMAGE } from "../actions/GameOne";
 import { ADD_ANSWER_NAME } from "../actions/GameOne";
+import { DELETE_ANSWER_NAME } from "../actions/GameOne";
 
 export default (state = initialState, action = {}) => {
   // console.log("STATE:", state, "ACTION:", action);
@@ -33,7 +34,12 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         answerName: action.payload
-      }  
+      };
+    case DELETE_ANSWER_NAME:
+      return {
+        ...state,
+        answerName: null
+      };
 
     default:
       return state;
