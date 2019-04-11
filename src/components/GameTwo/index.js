@@ -9,9 +9,9 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
-import "./GameOne.css";
+import "../GameOne/GameOne.css";
 
-class GameOne extends Component {
+class GameTwo extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
@@ -38,32 +38,13 @@ class GameOne extends Component {
 
     return (
       <div className="game-one">
-        <h1>GAME 1</h1>
+        <h1>GAME TWO</h1>
         <Link to="/">
-          <button className="GameOneButtons">HOME</button>
+          <button className="GameTwoButtons">HOME</button>
         </Link>
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
         </Link>
-        <div>
-          <img
-            className="AnswerImage"
-            src={this.props.answerImage}
-            alt={this.props.answer}
-          />
-        </div>
-        {this.props.addAnswerName && this.props.answerName && (
-          <div className="answer_name">
-            <h3>
-              The right answer is:{" "}
-              {rightAnswer.charAt(0).toUpperCase() + rightAnswer.slice(1)}
-            </h3>
-          </div>
-        )}
-        <div>
-          <h2>Directions:</h2>
-          <p>Select the correct dog breed</p>
-        </div>
         <div>
           {this.props.answers &&
             this.props.answers.map(dog => {
@@ -78,6 +59,22 @@ class GameOne extends Component {
               );
             })}
           {this.props.breeds.length === 0 && "Loading..."}
+          {this.props.addAnswerName && (
+            <div className="answer_name">
+              <h2>{rightAnswer}</h2>
+            </div>
+          )}
+          <div>
+            <h2>Directions:</h2>
+            <p>Select the correct image</p>
+          </div>
+          <div>
+            <img
+              className="AnswerImage"
+              src={this.props.answerImage}
+              alt={this.props.answer}
+            />
+          </div>
         </div>
       </div>
     );
@@ -97,4 +94,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
-)(GameOne);
+)(GameTwo);
