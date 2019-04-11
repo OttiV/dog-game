@@ -9,7 +9,7 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
-import { increment, decrement } from "../../actions/counter";
+import { increment } from "../../actions/counter";
 import { incrementTotal } from "../../actions/counterTotal";
 import "./GameOne.css";
 
@@ -20,16 +20,18 @@ class GameOne extends Component {
   incrementCounter = () => {
     this.props.increment();
   };
-  // dencrementCounter = () => {
-  //   this.props.decrement();
-  // };
+
+  percentage(partialValue, totalValue) {
+    return (100 * partialValue) / totalValue;
+  }
+
   handleClick = dog => {
     this.props.incrementTotal();
     if (this.props.answer === dog) {
       this.incrementCounter();
       this.props.setAnswers();
     } else {
-      this.props.decrement();
+      // this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
@@ -40,11 +42,16 @@ class GameOne extends Component {
 
   render() {
     console.log(this.props);
+    const answeredRight = this.props.counter;
+    const timeAnswered = this.props.counterTotal;
+    const percentageRight = Math.floor(
+      this.percentage(answeredRight, timeAnswered)
+    );
+
     const rightAnswer = this.props.answerName;
     if (this.props.loading) {
       return <LoadingModal />;
     }
-
     return (
       <div className="game-one">
         <h1>GAME 1</h1>
@@ -54,11 +61,11 @@ class GameOne extends Component {
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
         </Link>
-        <div>
-          <h1>
-            SCOREBOARD: {this.props.counter} out of {this.props.counterTotal}
-          </h1>
-        </div>
+        {this.props.counterTotal >= 1 && (
+          <div className="scoreboard">
+            <h1>SCOREBOARD: {percentageRight} %</h1>
+          </div>
+        )}
         <div>
           <img
             className="AnswerImage"
@@ -118,7 +125,6 @@ export default connect(
     addAnswerName,
     deleteAnswerName,
     increment,
-    decrement,
     incrementTotal
   }
 )(GameOne);
