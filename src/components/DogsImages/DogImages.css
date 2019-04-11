@@ -1,11 +1,13 @@
-.AnswerImage {
-  max-width: 400px;
-  max-height: 400px;
+.dogImages {
+  max-width: 200px;
+  width: 200px;
+  max-height: 200px;
   margin: 30px;
   padding: 10px;
   border: solid black;
   border-radius: 10%;
 }
-.GameOneButtons {
+
+.DogImagesButtons {
   margin: 10px;
 }
