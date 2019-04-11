@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 import { getDogImages } from "../../actions/DogsImages";
 import { connect } from "react-redux";
+import "./DogImages.css";
 
 class DogsImages extends Component {
   componentDidMount() {
@@ -17,16 +18,16 @@ class DogsImages extends Component {
     return (
       <div className="dog-breed-images">
         <h1>Dogs Breed Images</h1>
-        <li key={this.props.match.params.breeds}>
+        <h2 key={this.props.match.params.breeds}>
           {this.props.match.params.breeds.charAt(0).toUpperCase() +
             this.props.match.params.breeds.slice(1)}
-        </li>
+        </h2>
         <br />
         <Link to="/dog-breeds/">
-          <button>STUDY</button>
+          <button className="DogImagesButtons">STUDY</button>
         </Link>
         <Link to="/">
-          <button>HOME</button>
+          <button className="DogImagesButtons">HOME</button>
         </Link>
         <div>
           {this.props.images &&

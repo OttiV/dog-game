@@ -27,10 +27,10 @@ class GameOne extends Component {
       <div className="game-one">
         <h1>GAME 1</h1>
         <Link to="/">
-          <button>HOME</button>
+          <button className="GameOneButtons">HOME</button>
         </Link>
         <Link to="/dog-breeds/">
-          <button>STUDY</button>
+          <button className="GameOneButtons">STUDY</button>
         </Link>
         <div>
           <img
@@ -44,10 +44,11 @@ class GameOne extends Component {
             this.props.answers.map(dog => {
               return (
                 <button
+                  className="GameOneButtons"
                   onClick={this.handleClick}
                   key={this.props.breeds.breeds}
                 >
-                  {dog}
+                  {dog.charAt(0).toUpperCase() + dog.slice(1)}
                 </button>
               );
             })}
