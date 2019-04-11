@@ -4,11 +4,18 @@ import LoadingModal from "../LoadingModal";
 // import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
 import { getDogListAndAnswers } from "../../actions/GameOne";
+import "./GameOne.css";
 
 class GameOne extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
+  handleClick = event => {
+    this.props.dispatch({
+      type: "ADD_ANSWER",
+      payload: [] //what should we state??
+    });
+  };
 
   render() {
     console.log(this.props);
@@ -26,12 +33,23 @@ class GameOne extends Component {
           <button>STUDY</button>
         </Link>
         <div>
-          <img src={this.props.answerImage} alt={this.props.answer} />
+          <img
+            className="AnswerImage"
+            src={this.props.answerImage}
+            alt={this.props.answer}
+          />
         </div>
         <div>
           {this.props.answers &&
             this.props.answers.map(dog => {
-              return <button key={this.props.breeds.breeds}>{dog}</button>;
+              return (
+                <button
+                  onClick={this.handleClick}
+                  key={this.props.breeds.breeds}
+                >
+                  {dog}
+                </button>
+              );
             })}
           {this.props.breeds.length === 0 && "Loading..."}
         </div>
@@ -45,7 +63,6 @@ const mapStateToProps = state => {
     answers: state.dogs.answers,
     loading: state.appStatus.loading,
     answerImage: state.dogs.answerImage
-    // map state here, use in component
   };
 };
 
