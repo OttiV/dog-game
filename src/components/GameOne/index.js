@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
-// import { getGameOne } from "../../actions/GameOne";
+//import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
-import { getDogListAndAnswers } from "../../actions/GameOne";
+import { getDogListAndAnswers, setAnswers } from "../../actions/GameOne";
 import "./GameOne.css";
 
 class GameOne extends Component {
@@ -12,10 +12,10 @@ class GameOne extends Component {
   }
   handleClick = dog => {
     console.log("Answer is:", this.props.answer === dog ? "Right" : "Wrong");
-    // this.props.dispatch({
-    // type: "ADD_ANSWER",
-    // payload: [] //what should we state??
-    // });
+    
+    this.props.answer === dog
+      ? this.props.setAnswers()
+      : alert('Wrong!')
   };
 
   render() {
@@ -71,5 +71,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers }
+  { getDogListAndAnswers, setAnswers }
 )(GameOne);
