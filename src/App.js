@@ -5,8 +5,9 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import DogsList from "./components/DogsList";
 import DogsImages from "./components/DogsImages";
-import GameOne from "./components/Game1";
+import GameOne from "./components/GameOne";
 import gameTwo from "./components/Game2";
+
 
 class App extends Component {
   render() {
