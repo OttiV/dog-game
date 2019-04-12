@@ -39,15 +39,28 @@ export const setAnswers = () => {
   return (dispatch, getState) => {
     const state = getState();
     let maximum = state.dogs.breeds.length - 83;
-    // console.log("IS THIS THE COUNTER?", maximum);
     if (state.counter >= 5) {
       maximum = state.dogs.breeds.length - 80;
     }
+    if (state.counter >= 10) {
+      maximum = state.dogs.breeds.length - 77;
+    }
+    // console.log("IS THIS THE COUNTER?", maximum);
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
     const answers = [];
-    if (state.counter >= 5) {
+    if (state.counter >= 10) {
+      while (answers.length <= 8) {
+        const number = getRandom();
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
+      }
+    } else if (state.counter >= 5) {
       while (answers.length <= 5) {
         const number = getRandom();
         const breed = state.dogs.breeds[number];
