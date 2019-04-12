@@ -7,7 +7,6 @@ import { DELETE_ANSWER_NAME } from "../actions/GameOne";
 import { SHOW_HINT } from "../actions/GameOne";
 
 export default (state = initialState, action = {}) => {
-  console.log("STATE:", state, "ACTION:", action);
   switch (action.type) {
     case SET_DOG_LIST:
       return {
@@ -42,7 +41,6 @@ export default (state = initialState, action = {}) => {
         answerName: null
       };
     case SHOW_HINT:
-      console.log("SHOW_HINT action test:", action);
       return {
         ...state,
         hint: !state.hint

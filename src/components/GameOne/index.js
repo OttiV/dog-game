@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
-//import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
 import {
   getDogListAndAnswers,
@@ -32,7 +31,6 @@ class GameOne extends Component {
       this.incrementCounter();
       this.props.setAnswers();
     } else {
-      // this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
@@ -42,7 +40,6 @@ class GameOne extends Component {
   };
 
   render() {
-    console.log(this.props);
     const answeredRight = this.props.counter;
     const timeAnswered = this.props.counterTotal;
     const percentageRight = Math.floor(
@@ -54,9 +51,7 @@ class GameOne extends Component {
       return <LoadingModal />;
     }
 
-    console.log("this.props.hint test", this.props.hint);
     const showHint = this.props.counter >= 5 && this.props.hint;
-    console.log("showHint test:", showHint);
 
     return (
       <div className="game-one">
@@ -83,7 +78,6 @@ class GameOne extends Component {
           <div className="hint">
             <button
               onClick={() => {
-                console.log("click test!");
                 this.props.showHint();
               }}
             >
@@ -134,7 +128,6 @@ class GameOne extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("state test", state);
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,

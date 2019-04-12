@@ -41,7 +41,6 @@ class GameThree extends Component {
 //   };
 
   render() {
-    // console.log(this.props);
     // const answeredRight = this.props.counter;
     // const timeAnswered = this.props.counterTotal;
     // const percentageRight = Math.floor(

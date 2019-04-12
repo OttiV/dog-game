@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Home from "./components/Home/index";
-// import DogListContainer from "./components/DogListContainer";
 import { Route } from "react-router-dom";
 import "./App.css";
 import DogsList from "./components/DogsList";

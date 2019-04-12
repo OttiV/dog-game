@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
-//import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
 import {
   getDogListAndAnswers,
@@ -20,9 +19,6 @@ class GameTwo extends Component {
   incrementCounter = () => {
     this.props.increment();
   };
-  // dencrementCounter = () => {
-  //   this.props.decrement();
-  // };
   percentage(partialValue, totalValue) {
     return (100 * partialValue) / totalValue;
   }
@@ -42,7 +38,6 @@ class GameTwo extends Component {
   };
 
   render() {
-    console.log(this.props);
     const answeredRight = this.props.counter;
     const timeAnswered = this.props.counterTotal;
     const percentageRight = Math.floor(

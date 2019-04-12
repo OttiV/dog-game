@@ -15,7 +15,6 @@ export const setAnswerData = answerData => {
 };
 
 export const showHint = () => {
-  console.log("showHint test!");
   return {
     type: "SHOW_HINT"
   };
@@ -29,7 +28,6 @@ export const setAnswerImage = answerImage => {
 };
 
 export const addAnswerName = answerName => {
-  console.log("answerName test:", answerName);
   return {
     type: ADD_ANSWER_NAME,
     payload: answerName
