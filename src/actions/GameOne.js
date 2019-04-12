@@ -37,17 +37,25 @@ export const deleteAnswerName = answerName => {
 
 export const setAnswers = () => {
   return (dispatch, getState) => {
+    // console.log("IS THIS THE COUNTER?", this.props.state.counter);
     const state = getState();
     const maximum = state.dogs.breeds.length - 1;
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
-
     const answers = [];
-    for (let i = 0; i < 3; i++) {
-      const number = getRandom();
-      const breeds = state.dogs.breeds[number];
-      answers.push(breeds);
+    if (state.counter >= 5) {
+      for (let i = 0; i < 5; i++) {
+        const number = getRandom();
+        const breeds = state.dogs.breeds[number];
+        answers.push(breeds);
+      }
+    } else {
+      for (let i = 0; i < 3; i++) {
+        const number = getRandom();
+        const breeds = state.dogs.breeds[number];
+        answers.push(breeds);
+      }
     }
 
     const answerNumber = Math.floor(Math.random() * answers.length);
