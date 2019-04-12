@@ -37,24 +37,48 @@ export const deleteAnswerName = answerName => {
 
 export const setAnswers = () => {
   return (dispatch, getState) => {
-    // console.log("IS THIS THE COUNTER?", this.props.state.counter);
     const state = getState();
-    const maximum = state.dogs.breeds.length - 1;
+    let maximum = state.dogs.breeds.length - 83;
+    if (state.counter >= 5) {
+      maximum = state.dogs.breeds.length - 80;
+    }
+    if (state.counter >= 10) {
+      maximum = state.dogs.breeds.length - 77;
+    }
+    // console.log("IS THIS THE COUNTER?", maximum);
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
     const answers = [];
-    if (state.counter >= 5) {
-      for (let i = 0; i < 6; i++) {
+    if (state.counter >= 10) {
+      while (answers.length <= 8) {
         const number = getRandom();
-        const breeds = state.dogs.breeds[number];
-        answers.push(breeds);
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
+      }
+    } else if (state.counter >= 5) {
+      while (answers.length <= 5) {
+        const number = getRandom();
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
       }
     } else {
-      for (let i = 0; i < 3; i++) {
+      while (answers.length <= 2) {
         const number = getRandom();
-        const breeds = state.dogs.breeds[number];
-        answers.push(breeds);
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
       }
     }
 
