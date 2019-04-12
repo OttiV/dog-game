@@ -28,6 +28,9 @@ class GameOne extends Component {
 
   handleClick = dog => {
     this.props.incrementTotal();
+    if (this.props.hint === true) {
+      this.props.showHint();
+    }
     if (this.props.answer === dog) {
       this.incrementCounter();
       this.props.setAnswers();
@@ -81,7 +84,8 @@ class GameOne extends Component {
         </div>
         {this.props.counter >= 5 && (
           <div className="hint">
-            <button className="GameOneButtons"
+            <button
+              className="GameOneButtons"
               onClick={() => {
                 console.log("click test!");
                 this.props.showHint();
@@ -92,8 +96,10 @@ class GameOne extends Component {
           </div>
         )}
         {showHint && (
-          <div className="hintAnswer
-          ">
+          <div
+            className="hintAnswer
+          "
+          >
             <p>
               The right answer is{" "}
               <b>
