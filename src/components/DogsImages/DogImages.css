@@ -4,13 +4,6 @@
   width: 300px;
   height: 200px;
   margin: 2rem;
-  /* max-width: 200px;
-  width: 200px;
-  max-height: 200px;
-  margin: 30px;
-  padding: 10px;
-  border: solid black;
-  border-radius: 10%; */
 }
 
 .DogImagesButtons,
@@ -24,12 +17,12 @@
   border-radius: 200px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
   border: 2px solid #555;
-  color: #555;;
+  color: #555;
 }
 
 .DogImagesButtons:hover,
-.DogImagesButtons:active { 
-    background-color: #fd8f2e;
-    border: 1px solid #fd8f2e;
-    color: #fff;
- }
+.DogImagesButtons:active {
+  background-color: #fd8f2e;
+  border: 1px solid #fd8f2e;
+  color: #fff;
+}
