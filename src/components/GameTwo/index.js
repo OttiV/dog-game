@@ -58,7 +58,7 @@ class GameTwo extends Component {
       <div className="game-one">
         <h1>GAME TWO</h1>
         <Link to="/">
-          <button className="GameTwoButtons">HOME</button>
+          <button className="GameOneButtons">HOME</button>
         </Link>
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
