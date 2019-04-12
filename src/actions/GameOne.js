@@ -45,7 +45,7 @@ export const setAnswers = () => {
     }
     const answers = [];
     if (state.counter >= 5) {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 6; i++) {
         const number = getRandom();
         const breeds = state.dogs.breeds[number];
         answers.push(breeds);
