@@ -9,33 +9,49 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
+import { increment } from "../../actions/counter";
+import { incrementTotal } from "../../actions/counterTotal";
 import "./GameOne.css";
 
 class GameOne extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
+  incrementCounter = () => {
+    this.props.increment();
+  };
+
+  percentage(partialValue, totalValue) {
+    return (100 * partialValue) / totalValue;
+  }
+
   handleClick = dog => {
+    this.props.incrementTotal();
     if (this.props.answer === dog) {
-      return this.props.setAnswers();
+      this.incrementCounter();
+      this.props.setAnswers();
     } else {
+      // this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
         this.props.deleteAnswerName();
       }, 2000);
     }
-
-    // alert('Wrong!')
   };
 
   render() {
     console.log(this.props);
+    const answeredRight = this.props.counter;
+    const timeAnswered = this.props.counterTotal;
+    const percentageRight = Math.floor(
+      this.percentage(answeredRight, timeAnswered)
+    );
+
     const rightAnswer = this.props.answerName;
     if (this.props.loading) {
       return <LoadingModal />;
     }
-
     return (
       <div className="game-one">
         <h1>GAME 1</h1>
@@ -45,6 +61,11 @@ class GameOne extends Component {
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
         </Link>
+        {this.props.counterTotal >= 1 && (
+          <div className="scoreboard">
+            <h1>SCOREBOARD: {percentageRight} %</h1>
+          </div>
+        )}
         <div>
           <img
             className="AnswerImage"
@@ -90,11 +111,20 @@ const mapStateToProps = state => {
     answer: state.dogs.answer,
     loading: state.appStatus.loading,
     answerImage: state.dogs.answerImage,
-    answerName: state.dogs.answerName
+    answerName: state.dogs.answerName,
+    counter: state.counter,
+    counterTotal: state.counterTotal
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
+  {
+    getDogListAndAnswers,
+    setAnswers,
+    addAnswerName,
+    deleteAnswerName,
+    increment,
+    incrementTotal
+  }
 )(GameOne);

@@ -9,15 +9,29 @@ import {
   addAnswerName,
   deleteAnswerName
 } from "../../actions/GameOne";
+import { increment } from "../../actions/counter";
+import { incrementTotal } from "../../actions/counterTotal";
 import "../GameOne/GameOne.css";
 
 class GameTwo extends Component {
   componentDidMount() {
     this.props.getDogListAndAnswers();
   }
+  incrementCounter = () => {
+    this.props.increment();
+  };
+  // dencrementCounter = () => {
+  //   this.props.decrement();
+  // };
+  percentage(partialValue, totalValue) {
+    return (100 * partialValue) / totalValue;
+  }
+
   handleClick = dog => {
+    this.props.incrementTotal();
     if (this.props.answer === dog) {
-      return this.props.setAnswers();
+      this.incrementCounter();
+      this.props.setAnswers();
     } else {
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
@@ -25,12 +39,16 @@ class GameTwo extends Component {
         this.props.deleteAnswerName();
       }, 2000);
     }
-
-    // alert('Wrong!')
   };
 
   render() {
     console.log(this.props);
+    const answeredRight = this.props.counter;
+    const timeAnswered = this.props.counterTotal;
+    const percentageRight = Math.floor(
+      this.percentage(answeredRight, timeAnswered)
+    );
+
     const rightAnswer = this.props.answerName;
     if (this.props.loading) {
       return <LoadingModal />;
@@ -45,6 +63,11 @@ class GameTwo extends Component {
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
         </Link>
+        {this.props.counterTotal >= 1 && (
+          <div className="scoreboard">
+            <h1>SCOREBOARD: {percentageRight} %</h1>
+          </div>
+        )}
         <div>
           {this.props.answers &&
             this.props.answers.map(dog => {
@@ -59,9 +82,12 @@ class GameTwo extends Component {
               );
             })}
           {this.props.breeds.length === 0 && "Loading..."}
-          {this.props.addAnswerName && (
+          {this.props.addAnswerName && this.props.answerName && (
             <div className="answer_name">
-              <h2>{rightAnswer}</h2>
+              <h3>
+                The right answer is:{" "}
+                {rightAnswer.charAt(0).toUpperCase() + rightAnswer.slice(1)}
+              </h3>
             </div>
           )}
           <div>
@@ -87,11 +113,20 @@ const mapStateToProps = state => {
     answer: state.dogs.answer,
     loading: state.appStatus.loading,
     answerImage: state.dogs.answerImage,
-    answerName: state.dogs.answerName
+    answerName: state.dogs.answerName,
+    counter: state.counter,
+    counterTotal: state.counterTotal
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDogListAndAnswers, setAnswers, addAnswerName, deleteAnswerName }
+  {
+    getDogListAndAnswers,
+    setAnswers,
+    addAnswerName,
+    deleteAnswerName,
+    increment,
+    incrementTotal
+  }
 )(GameTwo);
