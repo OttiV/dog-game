@@ -19,7 +19,7 @@
   display: inline-block;
   margin: 10px;
   padding: 10px 27.5px;
-  font-weight: 300;
+  font-weight: 500;
   text-decoration: none;
   border-radius: 200px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
@@ -29,7 +29,7 @@
 
 .DogImagesButtons:hover,
 .DogImagesButtons:active { 
-    background-color: #555;
-    border: 1px solid #555;
+    background-color: #fd8f2e;
+    border: 1px solid #fd8f2e;
     color: #fff;
  }

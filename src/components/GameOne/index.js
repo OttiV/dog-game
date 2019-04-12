@@ -60,7 +60,7 @@ class GameOne extends Component {
 
     return (
       <div className="game-one">
-        <h1>GAME 1</h1>
+        <h1>GAME ONE</h1>
         <Link to="/">
           <button className="GameOneButtons">HOME</button>
         </Link>
@@ -105,14 +105,14 @@ class GameOne extends Component {
         {this.props.addAnswerName && this.props.answerName && (
           <div className="answer_name">
             <h3>
-              The right answer is:{" "}
+              Nope! The correct breed is:{" "}
               {rightAnswer.charAt(0).toUpperCase() + rightAnswer.slice(1)}
             </h3>
           </div>
         )}
         <div>
           <h2>Directions:</h2>
-          <p>Select the correct dog breed</p>
+          <p>Select the correct dog breed to raise and keep your score!</p>
         </div>
         <div>
           {this.props.answers &&
