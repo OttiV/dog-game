@@ -27,6 +27,9 @@ class GameOne extends Component {
 
   handleClick = dog => {
     this.props.incrementTotal();
+    if (this.props.hint === true) {
+      this.props.showHint();
+    }
     if (this.props.answer === dog) {
       this.incrementCounter();
       this.props.setAnswers();

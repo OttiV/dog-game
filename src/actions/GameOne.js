@@ -51,7 +51,7 @@ export const setAnswers = () => {
     if (state.counter >= 10) {
       maximum = state.dogs.breeds.length - 77;
     }
-    // console.log("IS THIS THE COUNTER?", maximum);
+
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
@@ -95,7 +95,7 @@ export const setAnswers = () => {
 
     const imageUrl = `https://dog.ceo/api/breed/${encodeURIComponent(
       answer
-    )}/images/random`; // Maybe this will need encodeURIComponent?
+    )}/images/random`; 
 
     request
       .get(imageUrl)
@@ -116,7 +116,7 @@ export const getDogListAndAnswers = () => {
         .get("https://dog.ceo/api/breeds/list/all")
         .then(response => {
           dispatch(setDogList(response.body.message));
-          setAnswers()(dispatch, getState); // looks weird, but works
+          setAnswers()(dispatch, getState); 
         })
         .catch(error => {
           console.error(error);
