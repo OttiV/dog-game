@@ -4,12 +4,20 @@ import { setDogList } from "./Dogslist";
 export const SET_ANSWER_DATA = "SET_ANSWER_DATA";
 export const SET_ANSWER_IMAGE = "SET_ANSWER_IMAGE";
 export const ADD_ANSWER_NAME = "ADD_ANSWER_NAME";
+export const SHOW_HINT = "SHOW_HINT";
 export const DELETE_ANSWER_NAME = "DELETE_ANSWER_NAME";
 
 export const setAnswerData = answerData => {
   return {
     type: "SET_ANSWER_DATA",
     payload: answerData
+  };
+};
+
+export const showHint = () => {
+  console.log("showHint test!");
+  return {
+    type: "SHOW_HINT"
   };
 };
 

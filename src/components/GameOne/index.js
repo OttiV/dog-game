@@ -7,7 +7,8 @@ import {
   getDogListAndAnswers,
   setAnswers,
   addAnswerName,
-  deleteAnswerName
+  deleteAnswerName,
+  showHint
 } from "../../actions/GameOne";
 import { increment } from "../../actions/counter";
 import { incrementTotal } from "../../actions/counterTotal";
@@ -52,6 +53,11 @@ class GameOne extends Component {
     if (this.props.loading) {
       return <LoadingModal />;
     }
+
+    console.log("this.props.hint test", this.props.hint);
+    const showHint = this.props.counter >= 5 && this.props.hint;
+    console.log("showHint test:", showHint);
+
     return (
       <div className="game-one">
         <h1>GAME 1</h1>
@@ -73,6 +79,29 @@ class GameOne extends Component {
             alt={this.props.answer}
           />
         </div>
+        {this.props.counter >= 5 && (
+          <div className="hint">
+            <button
+              onClick={() => {
+                console.log("click test!");
+                this.props.showHint();
+              }}
+            >
+              Hint:
+            </button>
+          </div>
+        )}
+        {showHint && (
+          <div className="hint">
+            <p>
+              The right answer is{" "}
+              <b>
+                {this.props.answer.charAt(0).toUpperCase() +
+                  this.props.answer.slice(1)}
+              </b>
+            </p>
+          </div>
+        )}
         {this.props.addAnswerName && this.props.answerName && (
           <div className="answer_name">
             <h3>
@@ -105,6 +134,7 @@ class GameOne extends Component {
   }
 }
 const mapStateToProps = state => {
+  console.log("state test", state);
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,
@@ -113,7 +143,8 @@ const mapStateToProps = state => {
     answerImage: state.dogs.answerImage,
     answerName: state.dogs.answerName,
     counter: state.counter,
-    counterTotal: state.counterTotal
+    counterTotal: state.counterTotal,
+    hint: state.dogs.hint
   };
 };
 
@@ -125,6 +156,7 @@ export default connect(
     addAnswerName,
     deleteAnswerName,
     increment,
-    incrementTotal
+    incrementTotal,
+    showHint
   }
 )(GameOne);
