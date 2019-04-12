@@ -1,11 +1,65 @@
+html {
+  background-color: #fff;
+  text-align: center;
+  color: #555;
+  font-family: 'Raleway', 'Arial', 'sans-serif';
+  font-weight: 400;
+  font-size: 20;
+  text-rendering: optimizeLegibility;
+  }
+
+h1,h2,p {
+  color: #555;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1,p {
+  font-style: italic;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size:250%;
+  word-spacing: 4px;
+}
+
+h2 {
+  font-size:150%;
+}
+
 .AnswerImage {
-  max-width: 400px;
+    border-radius: 2rem;
+    object-fit: cover;
+    width: 300px;
+    height: 200px;
+    margin: 2rem;
+  /* max-width: 400px;
   max-height: 400px;
   margin: 30px;
-  padding: 10px;
-  border: solid black;
-  border-radius: 10%;
+  padding: 10px; */
+  /* border: solid black; */
+  /* border-radius: 10%; */
 }
-.GameOneButtons {
+.GameOneButtons,
+.GameOneButtons:link,
+.GameOneButtons:visited {
+  display: inline-block;
   margin: 10px;
+  padding: 10px 27.5px;
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  border: 2px solid #555;
+  color: #555;;
 }
+
+.GameOneButtons:hover,
+.GameOneButtons:active { 
+    background-color: #555;
+    border: 1px solid #555;
+    color: #fff;
+ }
