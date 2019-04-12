@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
 import { getDogImages } from "../../actions/DogsImages";
@@ -47,8 +47,3 @@ const mapStateToProps = state => {
     loading: state.appStatus.loading
   };
 };
-
-export default connect(
-  mapStateToProps,
-  { getDogImages }
-)(DogsImages);

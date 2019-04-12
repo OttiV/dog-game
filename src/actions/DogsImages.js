@@ -1,35 +1,27 @@
-// import React, { Component } from "react";
-import { appLoading, appLoaded } from "./appStatus";
+import React, { Component } from "react";
+import DogBreedImages from "./DogBreedImages";
 import request from "superagent";
 
-export const SET_DOG_IMAGES = "SET_DOG_IMAGES";
+export default class DogsListContainer extends Component {
+  state = { images: null };
 
-export const setDogImages = images => {
-  return {
-    type: SET_DOG_IMAGES,
-    payload: images
-  };
-};
-
-export const getDogImages = breed => {
-  return dispatch => {
-    dispatch(appLoading());
-
+  componentDidMount() {
+    const breed = this.props.match.params.breed;
     request
-      .get(
-        `https://dog.ceo/api/breed/${encodeURIComponent(
-          breed
-        )}/images/random/10`
-      )
-      .then(response => {
-        dispatch(setDogImages(response.body.message));
-        dispatch(appLoaded());
-      })
-      .catch(error => {
-        console.error(error);
-        const EMPTY_ARRAY = [];
-        dispatch(setDogImages(EMPTY_ARRAY));
-        dispatch(appLoaded());
-      });
-  };
-};
+      .get(`https://dog.ceo/api/breed/${encodeURIComponent(breed)}/images`)
+      .then(response => this.updateImages(response.body.message))
+      .catch(console.error);
+  }
+
+  updateImages(images) {
+    this.setState({
+      images: images
+    });
+  }
+
+  render() {
+    return (
+      <DogBreedImages images={this.state.images} match={this.props.match} />
+    );
+  }
+}
