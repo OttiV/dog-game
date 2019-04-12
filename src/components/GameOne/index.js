@@ -81,18 +81,19 @@ class GameOne extends Component {
         </div>
         {this.props.counter >= 5 && (
           <div className="hint">
-            <button
+            <button className="GameOneButtons"
               onClick={() => {
                 console.log("click test!");
                 this.props.showHint();
               }}
             >
-              Hint:
+              HINT
             </button>
           </div>
         )}
         {showHint && (
-          <div className="hint">
+          <div className="hintAnswer
+          ">
             <p>
               The right answer is{" "}
               <b>
