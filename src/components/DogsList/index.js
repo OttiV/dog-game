@@ -4,6 +4,7 @@ import { getDogList } from "../../actions/Dogslist";
 import { connect } from "react-redux";
 import LoadingModal from "../LoadingModal";
 import { Link } from "react-router-dom";
+import "./DogList.css"
 
 class DogsList extends Component {
   componentDidMount() {
@@ -18,11 +19,11 @@ class DogsList extends Component {
     return (
       <div className="dogs-list">
         <h1>DOG LIST</h1>
-        <Link to="/">
-          <button>HOME</button>
+        <Link  to="/">
+          <button className="DogListButtons">HOME</button>
         </Link>
 
-        <ul>
+        <ul className="DogListLinks">
           {this.props.dogNames !== null &&
             this.props.dogNames.map(breed => {
               return <Dog key={breed.toString()} breed={breed} />;
