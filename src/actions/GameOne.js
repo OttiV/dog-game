@@ -37,24 +37,35 @@ export const deleteAnswerName = answerName => {
 
 export const setAnswers = () => {
   return (dispatch, getState) => {
-    // console.log("IS THIS THE COUNTER?", this.props.state.counter);
     const state = getState();
-    const maximum = state.dogs.breeds.length - 1;
+    let maximum = state.dogs.breeds.length - 83;
+    // console.log("IS THIS THE COUNTER?", maximum);
+    if (state.counter >= 5) {
+      maximum = state.dogs.breeds.length - 80;
+    }
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
     const answers = [];
     if (state.counter >= 5) {
-      for (let i = 0; i < 6; i++) {
+      while (answers.length <= 5) {
         const number = getRandom();
-        const breeds = state.dogs.breeds[number];
-        answers.push(breeds);
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
       }
     } else {
-      for (let i = 0; i < 3; i++) {
+      while (answers.length <= 2) {
         const number = getRandom();
-        const breeds = state.dogs.breeds[number];
-        answers.push(breeds);
+        const breed = state.dogs.breeds[number];
+        const isAnswer = answers.indexOf(breed) > -1;
+
+        if (!isAnswer) {
+          answers.push(breed);
+        }
       }
     }
 
