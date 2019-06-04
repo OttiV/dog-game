@@ -45,7 +45,7 @@ class GameOne extends Component {
   };
 
   render() {
-    console.log(this.props);
+    
     const answeredRight = this.props.counter;
     const timeAnswered = this.props.counterTotal;
     const percentageRight = Math.floor(
@@ -57,15 +57,19 @@ class GameOne extends Component {
       return <LoadingModal />;
     }
 
-    console.log("this.props.hint test", this.props.hint);
     const showHint = this.props.counter >= 5 && this.props.hint;
-    console.log("showHint test:", showHint);
+    console.log("this.props.hint test", this.props.hint);
+    console.log("answer test:", this.props.answer);
 
     return (
       <div className="game-one">
         <h1>GAME ONE</h1>
         <Link to="/">
-          <button className="GameOneButtons">HOME</button>
+          <button
+            className="GameOneButtons"
+          >
+            HOME
+          </button>
         </Link>
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
@@ -87,7 +91,6 @@ class GameOne extends Component {
             <button
               className="GameOneButtons"
               onClick={() => {
-                console.log("click test!");
                 this.props.showHint();
               }}
             >
@@ -101,7 +104,7 @@ class GameOne extends Component {
           "
           >
             <p>
-              The right answer is{" "}
+              The right answer
               <b>
                 {this.props.answer.charAt(0).toUpperCase() +
                   this.props.answer.slice(1)}
@@ -141,7 +144,7 @@ class GameOne extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("state test", state);
+  
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,

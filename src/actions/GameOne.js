@@ -15,7 +15,6 @@ export const setAnswerData = answerData => {
 };
 
 export const showHint = () => {
-  console.log("showHint test!");
   return {
     type: "SHOW_HINT"
   };
@@ -29,7 +28,6 @@ export const setAnswerImage = answerImage => {
 };
 
 export const addAnswerName = answerName => {
-  console.log("answerName test:", answerName);
   return {
     type: ADD_ANSWER_NAME,
     payload: answerName
@@ -53,7 +51,7 @@ export const setAnswers = () => {
     if (state.counter >= 10) {
       maximum = state.dogs.breeds.length - 77;
     }
-    // console.log("IS THIS THE COUNTER?", maximum);
+
     function getRandom() {
       return Math.floor(Math.random() * maximum);
     }
