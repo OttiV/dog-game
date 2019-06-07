@@ -6,6 +6,7 @@ import {
   getDogListAndAnswers,
   setAnswers,
   addAnswerName,
+  deleteAnswerName,
   showHint
 } from "../../actions/GameOne";
 import { increment } from "../../actions/counter";
@@ -160,6 +161,7 @@ export default connect(
     addAnswerName,
     increment,
     incrementTotal,
-    showHint
+    showHint,
+    deleteAnswerName
   }
 )(GameOne);
