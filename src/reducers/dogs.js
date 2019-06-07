@@ -3,7 +3,7 @@ import { SET_DOG_IMAGES } from "../actions/DogsImages";
 import { SET_ANSWER_DATA } from "../actions/GameOne";
 import { SET_ANSWER_IMAGE } from "../actions/GameOne";
 import { ADD_ANSWER_NAME } from "../actions/GameOne";
-// import { DELETE_ANSWER_NAME } from "../actions/GameOne";
+import { DELETE_ANSWER_NAME } from "../actions/GameOne";
 import { SHOW_HINT } from "../actions/GameOne";
 
 export default (state = initialState, action = {}) => {
@@ -35,11 +35,11 @@ export default (state = initialState, action = {}) => {
         ...state,
         answerName: action.payload
       };
-    // case DELETE_ANSWER_NAME:
-    //   return {
-    //     ...state,
-    //     answerName: null
-    //   };
+    case DELETE_ANSWER_NAME:
+      return {
+        ...state,
+        answerName: null
+      };
     case SHOW_HINT:
       return {
         ...state,
