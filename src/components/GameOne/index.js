@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
-//import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
 import {
   getDogListAndAnswers,
   setAnswers,
   addAnswerName,
-  deleteAnswerName,
   showHint
 } from "../../actions/GameOne";
 import { increment } from "../../actions/counter";
@@ -35,7 +33,6 @@ class GameOne extends Component {
       this.incrementCounter();
       this.props.setAnswers();
     } else {
-      // this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
@@ -58,8 +55,6 @@ class GameOne extends Component {
     }
 
     const showHint = this.props.counter >= 5 && this.props.hint;
-    console.log("this.props.hint test", this.props.hint);
-    console.log("answer test:", this.props.answer);
 
     return (
       <div className="game-one">
@@ -104,10 +99,9 @@ class GameOne extends Component {
           "
           >
             <p>
-              The right answer
+              Starts with: 
               <b>
-                {this.props.answer.charAt(0).toUpperCase() +
-                  this.props.answer.slice(1)}
+                {this.props.answer[0].toUpperCase() }
               </b>
             </p>
           </div>
@@ -164,7 +158,6 @@ export default connect(
     getDogListAndAnswers,
     setAnswers,
     addAnswerName,
-    deleteAnswerName,
     increment,
     incrementTotal,
     showHint

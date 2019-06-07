@@ -5,7 +5,6 @@ export const SET_ANSWER_DATA = "SET_ANSWER_DATA";
 export const SET_ANSWER_IMAGE = "SET_ANSWER_IMAGE";
 export const ADD_ANSWER_NAME = "ADD_ANSWER_NAME";
 export const SHOW_HINT = "SHOW_HINT";
-export const DELETE_ANSWER_NAME = "DELETE_ANSWER_NAME";
 
 export const setAnswerData = answerData => {
   return {
@@ -34,22 +33,15 @@ export const addAnswerName = answerName => {
   };
 };
 
-export const deleteAnswerName = answerName => {
-  return {
-    type: DELETE_ANSWER_NAME,
-    payload: answerName
-  };
-};
-
 export const setAnswers = () => {
   return (dispatch, getState) => {
     const state = getState();
-    let maximum = state.dogs.breeds.length - 83;
+    let maximum = state.dogs.breeds.length - 3;
     if (state.counter >= 5) {
-      maximum = state.dogs.breeds.length - 80;
+      maximum = state.dogs.breeds.length - 6;
     }
     if (state.counter >= 10) {
-      maximum = state.dogs.breeds.length - 77;
+      maximum = state.dogs.breeds.length - 9;
     }
 
     function getRandom() {
@@ -95,7 +87,7 @@ export const setAnswers = () => {
 
     const imageUrl = `https://dog.ceo/api/breed/${encodeURIComponent(
       answer
-    )}/images/random`; // Maybe this will need encodeURIComponent?
+    )}/images/random`;
 
     request
       .get(imageUrl)
@@ -116,7 +108,7 @@ export const getDogListAndAnswers = () => {
         .get("https://dog.ceo/api/breeds/list/all")
         .then(response => {
           dispatch(setDogList(response.body.message));
-          setAnswers()(dispatch, getState); // looks weird, but works
+          setAnswers()(dispatch, getState); 
         })
         .catch(error => {
           console.error(error);
