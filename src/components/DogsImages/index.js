@@ -41,7 +41,7 @@ class DogsImages extends Component {
  }
 }
 const mapStateToProps = state => {
- // console.log(state.dogs);
+
  return {
    images: state.dogs.images,
    loading: state.appStatus.loading

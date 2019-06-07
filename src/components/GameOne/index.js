@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingModal from "../LoadingModal";
-//import { getGameOne } from "../../actions/GameOne";
 import { connect } from "react-redux";
 import {
   getDogListAndAnswers,
   setAnswers,
   addAnswerName,
-  deleteAnswerName,
   showHint
 } from "../../actions/GameOne";
 import { increment } from "../../actions/counter";
@@ -35,7 +33,6 @@ class GameOne extends Component {
       this.incrementCounter();
       this.props.setAnswers();
     } else {
-      // this.props.decrement();
       this.props.addAnswerName(this.props.answer);
       setTimeout(() => {
         this.props.setAnswers();
@@ -45,7 +42,7 @@ class GameOne extends Component {
   };
 
   render() {
-    console.log(this.props);
+    
     const answeredRight = this.props.counter;
     const timeAnswered = this.props.counterTotal;
     const percentageRight = Math.floor(
@@ -57,15 +54,17 @@ class GameOne extends Component {
       return <LoadingModal />;
     }
 
-    console.log("this.props.hint test", this.props.hint);
     const showHint = this.props.counter >= 5 && this.props.hint;
-    console.log("showHint test:", showHint);
 
     return (
       <div className="game-one">
         <h1>GAME ONE</h1>
         <Link to="/">
-          <button className="GameOneButtons">HOME</button>
+          <button
+            className="GameOneButtons"
+          >
+            HOME
+          </button>
         </Link>
         <Link to="/dog-breeds/">
           <button className="GameOneButtons">STUDY</button>
@@ -87,7 +86,6 @@ class GameOne extends Component {
             <button
               className="GameOneButtons"
               onClick={() => {
-                console.log("click test!");
                 this.props.showHint();
               }}
             >
@@ -101,10 +99,9 @@ class GameOne extends Component {
           "
           >
             <p>
-              The right answer is{" "}
+              Starts with: 
               <b>
-                {this.props.answer.charAt(0).toUpperCase() +
-                  this.props.answer.slice(1)}
+                {this.props.answer[0].toUpperCase() }
               </b>
             </p>
           </div>
@@ -141,7 +138,7 @@ class GameOne extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("state test", state);
+  
   return {
     breeds: state.dogs.breeds,
     answers: state.dogs.answers,
@@ -161,7 +158,6 @@ export default connect(
     getDogListAndAnswers,
     setAnswers,
     addAnswerName,
-    deleteAnswerName,
     increment,
     incrementTotal,
     showHint
